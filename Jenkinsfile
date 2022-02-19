@@ -18,7 +18,7 @@ pipeline{
 
         stage("C") {
             steps{
-                ls -l
+                sh ls -l
             }
         }
 
