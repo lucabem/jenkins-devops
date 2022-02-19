@@ -3,6 +3,7 @@ pipeline{
     agent any
 
     stages{
+
         stage("A"){
             steps{
                 echo "========executing A========"
@@ -17,7 +18,7 @@ pipeline{
 
         stage("C") {
             steps{
-                echo "HOLAAA DESDE LA C"
+                ls -l
             }
         }
 
