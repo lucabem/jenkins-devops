@@ -41,8 +41,6 @@ pipeline{
         stage("Clean") {
             steps{
                 cleanWs()
-                checkout scm
-                echo "Building ${env.JOB_NAME}..."
             }
         }
     }
