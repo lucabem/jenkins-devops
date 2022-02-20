@@ -7,12 +7,14 @@ pipeline{
       }
     }
 
+    environment {
+        HOME = "${env.WORKSPACE}"
+    }
+
     stages{
         stage("Installing requirements"){
             steps{
-                withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'python -m pip install --user -r requirements.txt'
-                }
+                sh 'python -m pip install --user -r requirements.txt'
             }
         }
 
