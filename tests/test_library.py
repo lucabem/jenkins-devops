@@ -14,3 +14,9 @@ def test_sum():
 
 def test_sum():
     assert myfunctions.sum(-1, 1) == 0
+
+def test_resta():
+    assert myfunctions.resta(1, 1) == 0
+
+def test_resta():
+    assert myfunctions.resta(10, 5) == 4

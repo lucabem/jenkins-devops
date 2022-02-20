@@ -14,24 +14,34 @@ pipeline{
     }
 
     parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+        string(name: 'TAG', defaultValue: '', description: 'Version')
     }
 
     stages{
-        stage("GIT Checkout"){
+        stage("ENV"){
             steps{
-                checkout scm
+                sh "printenv"
             }
         }
+
+        stage("GIT Checkout"){
+            steps{
+                checkout scm: [$class: 'GitSCM',
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/lucabem/jenkins-devops',
+                        credentialsId: 'a337f278-706f-43a0-b97f-ffe30de2036e'
+                    ]], 
+                    branches: [[name: 'refs/tags/${TAG}']]], 
+                    poll: false
+            }
+        }
+
         stage("Setting up"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
             }
         }
+
         stage("Testing") {
             steps{
                 sh "python setup.py -q pytest"
@@ -45,11 +55,13 @@ pipeline{
                 }
             }
         }
+
         stage("Deploy") {
             steps{
                 sh "python setup.py bdist_wheel"
             }
         }
+        
         stage("Clean") {
             steps{
                 cleanWs()
