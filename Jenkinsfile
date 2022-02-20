@@ -4,19 +4,19 @@ pipeline{
 
     stages{
 
-        stage("A"){
+        stage("Build"){
             steps{
                 echo "========executing A========"
             }
         }
 
-        stage("B") {
+        stage("Test") {
             steps{
                 echo "HOLAAA DESDE LA B"
             }
         }
 
-        stage("C") {
+        stage("Deploy") {
             steps{
                 sh 'ls -l'
             }
