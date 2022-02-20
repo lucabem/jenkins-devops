@@ -40,7 +40,6 @@ pipeline{
 
         stage("Setting up"){
             steps{
-                sleep(45)
                 sh 'python -m pip install --user -r requirements.txt'
             }
         }
