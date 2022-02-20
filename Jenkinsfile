@@ -12,13 +12,6 @@ pipeline{
     }
 
     stages{
-        stage("Clean") {
-            steps{
-                cleanWs()
-                checkout scm
-                echo "Building ${env.JOB_NAME}..."
-            }
-        }
         stage("Installing requirements"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
@@ -43,16 +36,14 @@ pipeline{
                 echo "Here we will genereate the wheel"
                 sh "touch Hey.txt"
             }
-            post {
-                always {
-                    cleanWs(cleanWhenNotBuilt: false,
-                            deleteDirs: true,
-                            disableDeferredWipeout: true,
-                            notFailBuild: true,
-                            patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
-                                    [pattern: '.propsfile', type: 'EXCLUDE']])
-                 }
-            }   
+        }
+
+        stage("Clean") {
+            steps{
+                cleanWs()
+                checkout scm
+                echo "Building ${env.JOB_NAME}..."
+            }
         }
     }
 }
