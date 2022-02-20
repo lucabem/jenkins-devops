@@ -12,7 +12,9 @@ pipeline{
 
         stage("Test") {
             steps{
-                echo "HOLAAA DESDE LA B"
+                echo "Executing main.py to test"
+
+                sh "python main.py"
             }
         }
 
