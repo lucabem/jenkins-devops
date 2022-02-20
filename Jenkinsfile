@@ -12,22 +12,18 @@ pipeline{
     }
 
     stages{
-
         stage("Clean") {
             steps{
                 cleanWs()
-                // We need to explicitly checkout from SCM here
                 checkout scm
                 echo "Building ${env.JOB_NAME}..."
             }
         }
-
         stage("Installing requirements"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
             }
         }
-
         stage("Testing") {
             steps{
                 sh "python setup.py -q pytest"
@@ -47,18 +43,16 @@ pipeline{
                 echo "Here we will genereate the wheel"
                 sh "touch Hey.txt"
             }
-        }
-    }
-
-    post {
-        // Clean after build
-        always {
-            cleanWs(cleanWhenNotBuilt: false,
-                    deleteDirs: true,
-                    disableDeferredWipeout: true,
-                    notFailBuild: true,
-                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
-                               [pattern: '.propsfile', type: 'EXCLUDE']])
+            post {
+                always {
+                    cleanWs(cleanWhenNotBuilt: false,
+                            deleteDirs: true,
+                            disableDeferredWipeout: true,
+                            notFailBuild: true,
+                            patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                                    [pattern: '.propsfile', type: 'EXCLUDE']])
+                 }
+            }   
         }
     }
 }
