@@ -12,7 +12,7 @@ pipeline{
         stage("Build"){
             steps{
                 echo "Installing requirementes for building model..."
-                sh "pip install -r  requirements.txt"
+                sh "python -m pip install -r requirements.txt"
             }
         }
 
