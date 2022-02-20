@@ -14,24 +14,24 @@ pipeline{
     stages{
 
         stage("Clean") {
-            cleanWs()
-            // We need to explicitly checkout from SCM here
-            checkout scm
-            echo "Building ${env.JOB_NAME}..."
+            steps{
+                cleanWs()
+                // We need to explicitly checkout from SCM here
+                checkout scm
+                echo "Building ${env.JOB_NAME}..."
+            }
         }
 
         stage("Installing requirements"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
             }
-
         }
 
         stage("Testing") {
             steps{
                 sh "python setup.py -q pytest"
             }
-            
             post {
                 success {
                     echo "Tests has been ended successfully - Well done!"
@@ -48,7 +48,7 @@ pipeline{
                 sh "touch Hey.txt"
             }
         }
-   }
+    }
 
     post {
         // Clean after build
