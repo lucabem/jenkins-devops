@@ -8,16 +8,15 @@ pipeline{
     }
 
     stages{
-
-        stage("Build"){
+        stage("Installing requirements"){
             steps{
-                sh "whoami"
-                echo "Installing requirementes for building model..."
-                sh "python -m pip install -r requirements.txt"
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'python -m pip install --user -r requirements.txt'
+                }
             }
         }
 
-        stage("Test") {
+        stage("Testing") {
             steps{
                 sh "python setup.py pytest"
             }
