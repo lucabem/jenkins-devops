@@ -12,6 +12,11 @@ pipeline{
     }
 
     stages{
+        stage("GIT Checkout"){
+            steps{
+                checkout scm
+            }
+        }
         stage("Installing requirements"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
