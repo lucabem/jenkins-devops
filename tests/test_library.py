@@ -12,6 +12,5 @@ def test_haversine():
 def test_sum():
     assert myfunctions.sum(1, 2) == 3
 
-
 def test_sum():
     assert myfunctions.sum(-1, 1) == 0

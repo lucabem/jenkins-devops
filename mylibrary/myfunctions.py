@@ -27,4 +27,4 @@ def haversine(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
 
 
 def sum(a, b):
-    return a - b
+    return a + b
