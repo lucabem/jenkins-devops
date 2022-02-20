@@ -1,13 +1,18 @@
 
 pipeline{
     
-    agent any
+    agent {
+      docker {
+        image 'python:3'
+      }
+    }
 
     stages{
 
         stage("Build"){
             steps{
                 echo "========executing A========"
+                sh "echo $PATH"
                 sh "python --version"
             }
         }
