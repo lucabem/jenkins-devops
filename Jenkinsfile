@@ -16,27 +16,29 @@ pipeline{
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
             }
+
         }
 
         stage("Testing") {
             steps{
                 sh "python setup.py -q pytest"
             }
+            
+            post {
+                success {
+                    echo "Tests has been ended successfully - Well done!"
+                }
+                failure {
+                    echo "There are some erros on tests - Try to solve them!"
+                }
+            }
         }
 
         stage("Deploy") {
             steps{
-                sh 'ls -l'
+                echo "Here we will genereate the wheel"
             }
         }
 
-    }
-    post{
-        success{
-            echo "Everythin has been correctly - Well done!"
-        }
-        failure{
-            echo "Pipeline has failed"
-        }
     }
 }
