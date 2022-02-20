@@ -1,0 +1,6 @@
+.eggs/
+./pytest_cache
+mylibrary.egg-info/
+.pytest_cache/
+tests/__pycache__/
+mylibrary/__pycache__/

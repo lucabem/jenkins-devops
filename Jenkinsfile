@@ -11,8 +11,7 @@ pipeline{
 
         stage("Build"){
             steps{
-                echo "========executing A========"
-                sh "echo $PATH"
+                sh "Building model..."
                 sh "python --version"
             }
         }
