@@ -11,6 +11,7 @@ pipeline{
 
         stage("Build"){
             steps{
+                sh "whoami"
                 echo "Installing requirementes for building model..."
                 sh "python -m pip install -r requirements.txt"
             }
