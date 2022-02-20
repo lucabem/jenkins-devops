@@ -27,17 +27,6 @@ pipeline{
                 checkout scm
             }
         }
-
-        stage('Example') {
-            steps {
-                echo "Hello ${params.PERSON}"
-                echo "Biography: ${params.BIOGRAPHY}"
-                echo "Toggle: ${params.TOGGLE}"
-                echo "Choice: ${params.CHOICE}"
-                echo 'Password: ${params.PASSWORD}'
-            }
-        }
-
         stage("Setting up"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
@@ -56,13 +45,11 @@ pipeline{
                 }
             }
         }
-
         stage("Deploy") {
             steps{
                 sh "python setup.py bdist_wheel"
             }
         }
-
         stage("Clean") {
             steps{
                 cleanWs()
