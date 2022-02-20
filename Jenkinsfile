@@ -12,6 +12,14 @@ pipeline{
     }
 
     stages{
+
+        stage("Clean") {
+            cleanWs()
+            // We need to explicitly checkout from SCM here
+            checkout scm
+            echo "Building ${env.JOB_NAME}..."
+        }
+
         stage("Installing requirements"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
@@ -40,6 +48,17 @@ pipeline{
                 sh "touch Hey.txt"
             }
         }
+   }
 
+    post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
+        }
     }
 }
