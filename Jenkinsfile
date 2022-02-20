@@ -27,19 +27,19 @@ pipeline{
 
         stage("GIT Checkout"){
             steps{
-
-                if (params.TAG != '') {
-                    checkout scm: [$class: 'GitSCM',
-                        userRemoteConfigs: [[
-                            url: 'https://github.com/lucabem/jenkins-devops',
-                            credentialsId: 'a337f278-706f-43a0-b97f-ffe30de2036e'
-                        ]], 
-                        branches: [[name: 'refs/tags/${TAG}']]], 
-                        poll: false
-                } else {
-                    echo "HOLA!"
+                script {
+                    if (params.TAG != '') {
+                        checkout scm: [$class: 'GitSCM',
+                            userRemoteConfigs: [[
+                                url: 'https://github.com/lucabem/jenkins-devops',
+                                credentialsId: 'a337f278-706f-43a0-b97f-ffe30de2036e'
+                            ]], 
+                            branches: [[name: 'refs/tags/${TAG}']]], 
+                            poll: false
+                    } else {
+                        echo "HOLA!"
+                    }
                 }
-
             }
         }
 
