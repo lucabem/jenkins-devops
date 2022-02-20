@@ -7,6 +7,8 @@ pipeline{
       }
     }
 
+    options { skipDefaultCheckout() }
+
     environment {
         HOME = "${env.WORKSPACE}"
     }
@@ -17,6 +19,7 @@ pipeline{
                 checkout scm
             }
         }
+        
         stage("Installing requirements"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
