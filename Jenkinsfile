@@ -11,16 +11,14 @@ pipeline{
 
         stage("Build"){
             steps{
-                sh "Building model..."
-                sh "python --version"
+                sh "Installing requirementes for building model..."
+                sh "pip install -r  requirements.txt"
             }
         }
 
         stage("Test") {
             steps{
-                echo "Executing main.py to test"
-
-                sh "python main.py"
+                sh "python setup.py pytest"
             }
         }
 
