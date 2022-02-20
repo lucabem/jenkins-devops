@@ -19,4 +19,4 @@ def test_resta():
     assert myfunctions.resta(1, 1) == 0
 
 def test_resta():
-    assert myfunctions.resta(10, 5) == 4
+    assert myfunctions.resta(10, 5) == 5
