@@ -18,13 +18,7 @@ pipeline{
     }
 
     stages{
-        stage("ENV"){
-            steps{
-                sh "printenv"
-                sh "pip list"
-            }
-        }
-
+        
         stage("GIT Checkout"){
             steps{
                 script {
@@ -37,7 +31,7 @@ pipeline{
                             branches: [[name: 'refs/tags/${TAG}']]], 
                             poll: false
                     } else {
-                        echo "HOLA!"
+                       checkout scm
                     }
                 }
             }
