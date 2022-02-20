@@ -38,7 +38,7 @@ pipeline{
             }
         }
 
-        stage("Installing requirements"){
+        stage("Setting up"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
             }
@@ -59,8 +59,7 @@ pipeline{
 
         stage("Deploy") {
             steps{
-                echo "Here we will genereate the wheel"
-                sh "touch Hey.txt"
+                sh "python setup.py bdist_wheel"
             }
         }
 
