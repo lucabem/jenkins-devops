@@ -21,6 +21,7 @@ pipeline{
         
         stage("GIT Checkout"){
             steps{
+                sh "hostname"
                 script {
                     if (params.TAG != '') {
                         checkout scm: [$class: 'GitSCM',
