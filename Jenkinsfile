@@ -21,6 +21,7 @@ pipeline{
         stage("ENV"){
             steps{
                 sh "printenv"
+                sh "pip list"
             }
         }
 
@@ -61,7 +62,7 @@ pipeline{
                 sh "python setup.py bdist_wheel"
             }
         }
-        
+
         stage("Clean") {
             steps{
                 cleanWs()
