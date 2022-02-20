@@ -18,7 +18,7 @@ pipeline{
 
         stage("Testing") {
             steps{
-                sh "python setup.py pytest"
+                sh "python setup.py -q pytest"
             }
         }
 
@@ -30,14 +30,11 @@ pipeline{
 
     }
     post{
-        always{
-            echo "========always========"
-        }
         success{
-            echo "========pipeline executed successfully ========"
+            echo "Everythin has been correctly - Well done!"
         }
         failure{
-            echo "========pipeline execution failed========"
+            echo "Pipeline has failed"
         }
     }
 }
