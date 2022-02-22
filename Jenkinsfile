@@ -15,7 +15,7 @@ pipeline{
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
-        file(name: 'propierties.json', description: 'Mapping values between envs')
+        base64File 'small'
     }
 
     stages{
@@ -54,6 +54,10 @@ pipeline{
 
         stage("Setting up"){
             steps{
+                withFileParameter('small') {
+                    sh 'cat $small'
+                }
+
                 sh 'python -m pip install --user -r requirements.txt'
                 sh 'ls -l'
             }
