@@ -20,6 +20,7 @@ pipeline{
 
     stages{
 
+        /* 
         stage ("Prompt for input") {
             steps {
                 script {
@@ -30,6 +31,7 @@ pipeline{
                 echo 'Password: ${env.PASSWORD}'
             }
         }
+        */
         
         stage("GIT Checkout"){
             steps{
@@ -53,6 +55,7 @@ pipeline{
         stage("Setting up"){
             steps{
                 sh 'python -m pip install --user -r requirements.txt'
+                sh 'ls -l'
             }
         }
 
