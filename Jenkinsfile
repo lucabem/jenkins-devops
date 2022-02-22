@@ -15,23 +15,20 @@ pipeline{
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
-        base64File 'small'
     }
 
     stages{
 
-        /* 
         stage ("Prompt for input") {
             steps {
                 script {
                     env.USERNAME = input message: 'Please enter the username', parameters: [string(defaultValue: '', description: '', name: 'Username')]
-                    env.PASSWORD = input message: 'Please enter the password', parameters: [password(defaultValue: '', description: '', name: 'Password')]                   
+                    env.PASSWORD = input message: 'Please enter the password', parameters: [password(defaultValue: '', description: '', name: 'Password')]
                 }
                 echo "Username: ${env.USERNAME}"
                 echo 'Password: ${env.PASSWORD}'
             }
         }
-        */
         
         stage("GIT Checkout"){
             steps{
@@ -54,12 +51,7 @@ pipeline{
 
         stage("Setting up"){
             steps{
-                withFileParameter('small') {
-                    sh 'cat $small'
-                }
-
                 sh 'python -m pip install --user -r requirements.txt'
-                sh 'ls -l'
             }
         }
 
