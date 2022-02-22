@@ -15,6 +15,7 @@ pipeline{
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
+        file(name: 'propierties.json', description: 'Mapping values between envs')
     }
 
     stages{
@@ -23,9 +24,7 @@ pipeline{
             steps {
                 script {
                     env.USERNAME = input message: 'Please enter the username', parameters: [string(defaultValue: '', description: '', name: 'Username')]
-                    env.PASSWORD = input message: 'Please enter the password', parameters: [password(defaultValue: '', description: '', name: 'Password')]
-                    env.PASSWORD = input message: 'Please enter the file',     parameters: [file(name: 'global.properties')]
-                    
+                    env.PASSWORD = input message: 'Please enter the password', parameters: [password(defaultValue: '', description: '', name: 'Password')]                   
                 }
                 echo "Username: ${env.USERNAME}"
                 echo 'Password: ${env.PASSWORD}'
