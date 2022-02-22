@@ -24,6 +24,8 @@ pipeline{
                 script {
                     env.USERNAME = input message: 'Please enter the username', parameters: [string(defaultValue: '', description: '', name: 'Username')]
                     env.PASSWORD = input message: 'Please enter the password', parameters: [password(defaultValue: '', description: '', name: 'Password')]
+                    env.PASSWORD = input message: 'Please enter the file',     parameters: [file(name: 'global.properties')]
+                    
                 }
                 echo "Username: ${env.USERNAME}"
                 echo 'Password: ${env.PASSWORD}'
