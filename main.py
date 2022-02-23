@@ -19,15 +19,7 @@ if __name__ == "__main__":
     with open('json/map_values.json', 'r') as f:
         json_map_ids = json.load(f)
 
-    sbx_collection_id, dev_collection_id, pro_collection_id = json_map_ids[collection]
-
-    pro = Metabase(
-        endpoint='https://metabase.sofia-sbx.adn.naturgy.com',
-        email=os.environ['SBX_USR'],
-        password=os.environ['SBX_PSW']
-    )
-
-    print(pro.get("/card/34"))    
+    sbx_collection_id, dev_collection_id, pro_collection_id = json_map_ids[collection] 
 
 
 
