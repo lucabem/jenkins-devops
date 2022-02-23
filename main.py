@@ -6,9 +6,13 @@ if __name__ == "__main__":
 
     collection = sys.argv[1]
     card_ids   = sys.argv[2]
+    
 
     if card_ids != 'all':
         card_ids = card_ids.strip().split(",")
+        card_ids = list(map(int, card_ids))
+    else:
+        pass
 
     print(f"We will send cards_id={card_ids} collection={collection}")
 

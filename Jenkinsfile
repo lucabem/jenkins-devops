@@ -17,7 +17,7 @@ pipeline{
         string(name: 'TAG', defaultValue: '', description: 'Version')
         choice(name: 'CHOICES', choices: ['calidad', 'estructuras', 'estructura_con_notas', 'impacto_prioridad', 'linaje', 'administracion'],
                 description: 'Select collection to deploy')
-        string(name: 'ids', defaultValue: 'all', description: 'IDs (separated by , example 1, 2, 3)')
+        string(name: 'ids', defaultValue: 'all', description: 'IDs (separated by , without spaces -> 1,2,3)')
     }
 
     stages{
