@@ -15,14 +15,13 @@ pipeline{
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
-        choice(name: 'CHOICES', choices: ['Calidad', 'Catalogo', 'Linaje'], description: 'Select CCC')
+        choice(name: 'CHOICES', choices: ['calidad', 'catalogo', 'linaje'], description: 'Select collection to deploy')
     }
 
     stages{
       
         stage("GIT Checkout"){
             steps{
-                sh "hostname"
                 script {
                     if (params.TAG != '') {
                         checkout scm: [$class: 'GitSCM',
