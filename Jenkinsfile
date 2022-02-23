@@ -15,7 +15,7 @@ pipeline{
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
-        choice(name: 'CHOICES', choices: ['Calidad', 'Catalogo', 'Linaje'], description: '')
+        choice(name: 'CHOICES', choices: ['Calidad', 'Catalogo', 'Linaje'], description: 'Select CCC')
     }
 
     stages{

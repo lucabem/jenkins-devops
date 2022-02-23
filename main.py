@@ -3,7 +3,6 @@ import sys
 
 if __name__ == "__main__":
 
-    print("Hello World!")
+    collection = sys.argv[1]
 
-    print('Number of arguments:', len(sys.argv), 'arguments.')
-    print('Argument List:', str(sys.argv))
+    print(f"We will send collection={collection}")
