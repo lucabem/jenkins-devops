@@ -15,21 +15,11 @@ pipeline{
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
+        choice(name: 'CHOICES', choices: ['Calidad', 'Catalogo', 'Linaje'], description: '')
     }
 
     stages{
-
-        stage ("Prompt for input") {
-            steps {
-                script {
-                    env.USERNAME = input message: 'Please enter the username', parameters: [string(defaultValue: '', description: '', name: 'Username')]
-                    env.PASSWORD = input message: 'Please enter the password', parameters: [password(defaultValue: '', description: '', name: 'Password')]
-                }
-                echo "Username: ${env.USERNAME}"
-                echo 'Password: ${env.PASSWORD}'
-            }
-        }
-        
+      
         stage("GIT Checkout"){
             steps{
                 sh "hostname"
@@ -71,7 +61,7 @@ pipeline{
 
         stage("Deploy") {
             steps{
-                sh "python setup.py bdist_wheel"
+                sh "python main.py ${params.CHOICES}"
             }
         }
 
