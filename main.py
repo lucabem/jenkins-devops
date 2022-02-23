@@ -1,13 +1,12 @@
 import sys
 import json
 import os
+from metabase import Metabase
 
 if __name__ == "__main__":
 
     collection = sys.argv[1]
     card_ids   = sys.argv[2]
-    
-    print(os.environ)
 
     if card_ids != 'all':
         card_ids = card_ids.strip().split(",")
@@ -22,7 +21,15 @@ if __name__ == "__main__":
 
     sbx_collection_id, dev_collection_id, pro_collection_id = json_map_ids[collection]
 
-    for i in json_map_ids[collection]:
-        print(i)
+    pro = Metabase(
+        endpoint='https://metabase.sofia-sbx.adn.naturgy.com',
+        email=os.environ['SBX_USR'],
+        password=os.environ['SBX_PSW']
+    )
+
+    print(pro.get("/card/34"))    
+
+
+
 
     
