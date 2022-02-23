@@ -15,7 +15,7 @@ if __name__ == "__main__":
     with open('json/map_values.json', 'r') as f:
         json_map_ids = json.load(f)
 
-    sbx_collection_id, dev_collection_id, pro_collection_id = json_map_ids
+    sbx_collection_id, dev_collection_id, pro_collection_id = json_map_ids[collection]
 
     for i in json_map_ids[collection]:
         print(i)
