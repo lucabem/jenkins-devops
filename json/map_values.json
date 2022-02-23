@@ -1,5 +1,9 @@
 {
-    "linaje": [1, 2, 3],
-    "calidad": [4, 5, 6],
-    "catalogo": [7, 8, 9]
+    "calidad": [3, 3, 3],
+    "estructuras": [5, 10, 5],
+    "estructura_con_notas": [15, 21, 16],
+    "impacto_prioridad": [12, 18, 14],
+    "linaje": [13, 19, 15],
+    "administracion": [7, 12, 7],
+    "otros": [6, 11, 6]
 }

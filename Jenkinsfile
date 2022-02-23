@@ -15,11 +15,12 @@ pipeline{
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
-        choice(name: 'CHOICES', choices: ['calidad', 'catalogo', 'linaje'], description: 'Select collection to deploy')
+        choice(name: 'CHOICES', choices: ['calidad', 'estructuras', 'estructura_con_notas', 'impacto_prioridad', 'linaje', 'administracion'],
+                description: 'Select collection to deploy')
+        string(name: 'ids', defaultValue: 'all', description: 'IDs (separated by , example 1, 2, 3)')
     }
 
     stages{
-      
         stage("GIT Checkout"){
             steps{
                 script {
@@ -60,7 +61,7 @@ pipeline{
 
         stage("Deploy") {
             steps{
-                sh "python main.py ${params.CHOICES}"
+                sh "python main.py ${params.CHOICES} ${params.ids}"
             }
         }
 
