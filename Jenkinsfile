@@ -43,7 +43,8 @@ pipeline{
 
         stage("Setting up"){
             steps{
-                echo "Global property file: ${SBX_EMAIL_USER}"
+                echo "Global property file: ${SBX_EMAIL_USER_USR}"
+                echo "Global property file: ${SBX_EMAIL_USER_PSW}"
 
                 sh 'python -m pip install --user -r requirements.txt'
             }
