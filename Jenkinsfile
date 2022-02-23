@@ -11,9 +11,10 @@ pipeline{
 
     environment {
         HOME = "${env.WORKSPACE}"
-        SBX_EMAIL_USER = credentials('ce941911-858b-44db-a1de-c2b190f07d85')
-        DEV_EMAIL_USER = credentials('fdcf878f-065d-4063-bada-2f76dd211024	')
+        SBX = credentials('ce941911-858b-44db-a1de-c2b190f07d85')
+        DEV = credentials('fdcf878f-065d-4063-bada-2f76dd211024')
     }
+
 
     parameters {
         string(name: 'TAG', defaultValue: '', description: 'Version')
@@ -43,9 +44,7 @@ pipeline{
 
         stage("Setting up"){
             steps{
-                sh "echo ${SBX_EMAIL_USER_USR} > aqui"
-                sh "cat aqui"
-
+                
                 sh 'python -m pip install --user -r requirements.txt'
             }
         }
