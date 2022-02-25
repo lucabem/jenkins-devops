@@ -42,6 +42,7 @@ pipeline{
 
         stage("Setting up"){
             steps{
+                sh "ping google.com -c 5"
                 sh 'python --version'
                 sh 'python -m pip install --user -r requirements.txt'
             }
