@@ -42,7 +42,7 @@ pipeline{
 
         stage("Setting up"){
             steps{
-                
+                sh 'python --version'
                 sh 'python -m pip install --user -r requirements.txt'
             }
         }
