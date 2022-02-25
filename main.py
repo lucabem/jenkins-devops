@@ -1,7 +1,6 @@
 import sys
 import json
-import os
-from metabase import Metabase
+
 
 if __name__ == "__main__":
 
