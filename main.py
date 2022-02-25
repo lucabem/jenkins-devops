@@ -1,25 +1,37 @@
 import sys
 import json
 
+import argparse
+
+
+
 
 if __name__ == "__main__":
 
-    collection = sys.argv[1]
-    card_ids   = sys.argv[2]
+    parser = argparse.ArgumentParser(description='Send collection from SBX to all ENV.')
+    parser.add_argument('--collection_name', 
+        type=str,  
+        help='Collection where graphs are saved on origin', 
+        required=True
+    )
+    parser.add_argument('--card_ids',
+        type=str,
+        help='ID to send',
+        required=False
+    )
 
-    if card_ids != 'all':
-        card_ids = card_ids.strip().split(",")
-        card_ids = list(map(int, card_ids))
+
+    args = parser.parse_args()
+    collection_name = args.collection_name
+
+    if args.card_ids != 'all':
+        ids = args.card_ids.split(',')
+        ids = [int(id) for id in ids]
     else:
-        pass
+        ids = [i for i in range(1, 10)]
 
-    print(f"We will send cards_id={card_ids} collection={collection}")
-
-    with open('json/map_values.json', 'r') as f:
-        json_map_ids = json.load(f)
-
-    sbx_collection_id, dev_collection_id, pro_collection_id = json_map_ids[collection] 
-
+    print(f"Collection: {collection_name}")
+    print(f"Cards ID: {ids}")
 
 
 

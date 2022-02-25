@@ -63,7 +63,7 @@ pipeline{
 
         stage("Deploy") {
             steps{
-                sh "python main.py ${params.CHOICES} ${params.ids}"
+                sh "python main.py --collection_name ${params.CHOICES} --card_ids ${params.ids}"
             }
         }
     }
