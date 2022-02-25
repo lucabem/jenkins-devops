@@ -77,7 +77,7 @@ pipeline{
 
     post{
         always{
-            echo "HOla"
+            cleanWs()
         }
     }
 }
