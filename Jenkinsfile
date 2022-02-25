@@ -66,12 +66,6 @@ pipeline{
                 sh "python main.py ${params.CHOICES} ${params.ids}"
             }
         }
-
-        stage("Clean") {
-            steps{
-                cleanWs()
-            }
-        }
     }
 
     post{
