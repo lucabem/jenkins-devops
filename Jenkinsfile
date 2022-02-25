@@ -11,8 +11,6 @@ pipeline{
 
     environment {
         HOME = "${env.WORKSPACE}"
-        SBX = credentials('ce941911-858b-44db-a1de-c2b190f07d85')
-        DEV = credentials('fdcf878f-065d-4063-bada-2f76dd211024')
     }
 
 
